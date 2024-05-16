@@ -48,11 +48,11 @@ function App() {
   };
 
   const editAuto = (id: number, name: string, model: string, price: number) => {
-    const currentObj = auto.find((auto: any) => auto.id === id);
+    let currentObj = auto.find((auto: any) => auto.id === id);
 
-    currentObj.name = name;
-    currentObj.model = model;
-    currentObj.price = price;
+    currentObj?.name = name;
+    currentObj?.model = model;
+    currentObj?.price = price;
   };
 
   return (
