@@ -4,12 +4,20 @@ import {
   Marker,
   Tooltip,
 } from "react-leaflet";
-
+import L from 'leaflet'
 import "leaflet/dist/leaflet.css";
+import mapMarker from '../../assets/marker.svg'
 
 type PropsType = {
   autos: any;
 };
+
+const customIcon = L.icon({
+	iconUrl: mapMarker,
+	iconSize: [25, 41], // Размеры маркера (ширина, высота) в пикселях
+	iconAnchor: [12, 41], // Точка привязки маркера (где он будет центрироваться)
+	popupAnchor: [0, -41], // Точка привязки всплывающего окна
+})
 
 const Map = (props: PropsType) => {
   const getGeoInObj = (lat: number, lng: number) => {
@@ -39,6 +47,7 @@ const Map = (props: PropsType) => {
           {props.autos.map((auto: any) => (
             <Marker
               key={auto.id}
+              icon={customIcon}
               position={getGeoInObj(auto.latitude, auto.longitude)}
             >
               <Tooltip>
